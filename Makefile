@@ -1,4 +1,4 @@
-.PHONY: req
+.PHONY: req dev lint
 
 req:
 	uv pip compile pyproject.toml -o requirements/base.txt > /dev/null
@@ -6,3 +6,6 @@ req:
 
 dev:
 	uv pip sync requirements/dev.txt
+
+lint:
+	pre-commit run --all-files
