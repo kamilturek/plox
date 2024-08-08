@@ -1,0 +1,8 @@
+[project]
+name = "plox"
+authors = [{ name = "Kamil Turek", email = "kamil.turek@hotmail.com" }]
+version = "0.1.0"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["ruff", "pre-commit"]
