@@ -4,10 +4,12 @@ import pathlib
 import sys
 from typing import Self
 
+from plox.errors import ErrorReporter
+
 
 class Lox:
-    def __init__(self: Self) -> None:
-        self._had_error = False
+    def __init__(self: Self, error_reporter: ErrorReporter) -> None:
+        self._error_reporter = error_reporter
 
     def run_file(self: Self, path: str) -> None:
         self.run(pathlib.Path(path).read_text())
@@ -20,18 +22,11 @@ class Lox:
                 break
 
             self.run(line)
-            self.had_error = False
+            self._error_reporter.had_error = False
 
     def run(self: Self, _: str) -> None:
-        if self.had_error is True:
+        if self._error_reporter.had_error is True:
             sys.exit(os.EX_DATAERR)
-
-    def error(self: Self, line: int, message: str) -> None:
-        self.report(line=line, where="", message=message)
-
-    def report(self: Self, line: int, where: str, message: str) -> None:
-        print(f"[line {line}] Error {where}: {message}")
-        self.had_error = True
 
 
 def main() -> None:
