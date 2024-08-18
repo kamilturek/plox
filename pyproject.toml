@@ -5,11 +5,16 @@ version = "0.1.0"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["ruff", "pre-commit"]
+dev = ["ruff", "pre-commit", "pytest"]
 
 [tool.ruff]
 target-version = "py312"
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["ANN401", "C901", "D", "T201"]
+ignore = ["ANN401", "C901", "D", "FIX002", "PLR0912", "TD003", "T201"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**.py" = [
+    "S101", # Use of `assert` is necessary in tests
+]
