@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Self
 
 
 class TokenType(Enum):
@@ -50,3 +51,6 @@ class TokenType(Enum):
 
     # Other
     EOF = "EOF"
+
+    def __repr__(self: Self) -> str:
+        return f"TokenType.{self.name}"

@@ -13,3 +13,6 @@ sync:
 
 lint:
 	pre-commit run --all-files
+
+test:
+	pytest --cov plox --cov-report term-missing -vv tests
