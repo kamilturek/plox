@@ -97,6 +97,8 @@ class Scanner:
                 if self._match("/"):
                     while self._peek() != "\n" and not self._is_at_end():
                         self._advance()
+                elif self._match("*"):
+                    self._scan_multiline_comment()
                 else:
                     self._add_token(TokenType.SLASH)
             case " " | "\r" | "\t":
@@ -174,6 +176,23 @@ class Scanner:
             # Trim the surrounding quotes.
             literal=self._source[self._start + 1 : self._current - 1],
         )
+
+    def _scan_multiline_comment(self: Self) -> None:
+        while (
+            self._peek() != "*" or self._peek_next() != "/"
+        ) and not self._is_at_end():
+            if self._peek() == "\n":
+                self._line += 1
+
+            self._advance()
+
+        if self._is_at_end():
+            self._error_reporter.error(self._line, "Unterminated comment.")
+            return
+
+        # Move behind `*/`.
+        self._advance()
+        self._advance()
 
     def _scan_number(self: Self) -> None:
         while self._peek().isdigit():

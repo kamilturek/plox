@@ -169,6 +169,27 @@ class TestScanner:
                 id="comment",
             ),
             pytest.param(
+                """
+                + /* first comment line
+                     seccond comment line */
+                """,
+                [
+                    Token(
+                        type=TokenType.PLUS,
+                        lexeme="+",
+                        literal=None,
+                        line=2,
+                    ),
+                    Token(
+                        type=TokenType.EOF,
+                        lexeme="",
+                        literal=None,
+                        line=4,
+                    ),
+                ],
+                id="multi-line comment",
+            ),
+            pytest.param(
                 '"this is a string"',
                 [
                     Token(
