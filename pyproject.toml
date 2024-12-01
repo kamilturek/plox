@@ -3,18 +3,39 @@ name = "plox"
 authors = [{ name = "Kamil Turek", email = "kamil.turek@hotmail.com" }]
 version = "0.1.0"
 dependencies = []
-
-[project.optional-dependencies]
-dev = ["ruff", "pre-commit", "pytest", "pytest-cov"]
+requires-python = ">=3.12"
 
 [tool.ruff]
 target-version = "py312"
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["ANN401", "C901", "D", "FIX002", "PLR0912", "TD003", "T201"]
+ignore = [
+    "ANN401",
+    "C901",
+    "D",
+    "FIX002",
+    "PLR0912",
+    "TD003",
+    "T201",
+    "PLR0915",  # Too many statements are okay.
+]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**.py" = [
-    "S101", # Use of `assert` is necessary in tests
+    "S101", # Use of `assert` is necessary in tests.
+]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+fail_under = 84
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.1",
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.8.1",
 ]

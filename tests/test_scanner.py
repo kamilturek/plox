@@ -2,7 +2,7 @@ from typing import Self
 
 import pytest
 
-from plox.errors import ListErrorReporter, TextErrorReporter
+from plox.errors import ListErrorReporter
 from plox.scanner import Scanner
 from plox.token import Token
 from plox.token_type import TokenType
