@@ -2,7 +2,7 @@
 
 dev:
 	uv venv
-	uv sync
+	uv sync --dev
 	uv run pre-commit install
 
 lint:
