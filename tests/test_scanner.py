@@ -171,7 +171,7 @@ class TestScanner:
             pytest.param(
                 """
                 + /* first comment line
-                     seccond comment line */
+                     second comment line */
                 """,
                 [
                     Token(
