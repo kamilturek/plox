@@ -9,4 +9,4 @@ lint:
 	uv run pre-commit run --all-files
 
 test:
-	pytest --cov plox --cov-report term-missing -vv tests
+	uv run pytest --cov plox --cov-report term-missing -vv tests
