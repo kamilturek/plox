@@ -26,6 +26,12 @@ ignore = [
     "S101", # Use of `assert` is necessary in tests.
 ]
 
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+fail_under = 84
+
 [dependency-groups]
 dev = [
     "pre-commit>=4.0.1",
