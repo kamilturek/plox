@@ -3,6 +3,7 @@ name = "plox"
 authors = [{ name = "Kamil Turek", email = "kamil.turek@hotmail.com" }]
 version = "0.1.0"
 dependencies = []
+requires-python = ">=3.12"
 
 [project.optional-dependencies]
 dev = ["ruff", "pre-commit", "pytest", "pytest-cov"]
@@ -12,9 +13,18 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["ANN401", "C901", "D", "FIX002", "PLR0912", "TD003", "T201"]
+ignore = [
+    "ANN401",
+    "C901",
+    "D",
+    "FIX002",
+    "PLR0912",
+    "TD003",
+    "T201",
+    "PLR0915",  # Too many statements are okay.
+]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**.py" = [
-    "S101", # Use of `assert` is necessary in tests
+    "S101", # Use of `assert` is necessary in tests.
 ]

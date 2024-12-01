@@ -12,7 +12,7 @@ sync:
 	uv pip sync requirements/dev.txt
 
 lint:
-	pre-commit run --all-files
+	uv run pre-commit run --all-files
 
 test:
 	pytest --cov plox --cov-report term-missing -vv tests
